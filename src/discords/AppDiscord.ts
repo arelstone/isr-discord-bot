@@ -1,4 +1,4 @@
-import { ArgsOf, CommandMessage, CommandNotFound, Discord, On } from "@typeit/discord";
+import { ArgsOf, CommandMessage, CommandNotFound, Discord, On, Once } from "@typeit/discord";
 import { Client } from "discord.js";
 import * as Path from "path";
 
@@ -9,6 +9,11 @@ import * as Path from "path";
 })
 
   export class DiscordApp {
+    @Once('ready')
+    onReady(){
+      console.info('Im ready!')
+    }
+
     @On("message")
     onMessage([message]: ArgsOf<"message">,client: Client) {
       console.log(message);
