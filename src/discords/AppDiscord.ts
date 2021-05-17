@@ -15,8 +15,8 @@ import * as Path from "path";
     }
 
     @On("message")
-    onMessage([message]: ArgsOf<"message">,client: Client) {
-      console.log(message);
+    onMessage([message]: ArgsOf<"message">, client: Client) {
+      console.log(`[command]: ${message.content} by ${message.author.username} `)
     }
 
     @CommandNotFound()
