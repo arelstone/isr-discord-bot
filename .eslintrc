@@ -1,0 +1,159 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "@typescript-eslint/no-empty-function": [
+            "error",
+            {
+                "allow": [
+                    "arrowFunctions"
+                ],
+            },
+        ],
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": true,
+                "ignoreProperties": true,
+            },
+        ],
+        "@typescript-eslint/member-delimiter-style": [
+            2,
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+            },
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false,
+            },
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "ignoreComments": false,
+                "ignoredNodes": [
+                    "JSXElement",
+                    "JSXElement > *",
+                    "JSXAttribute",
+                    "JSXIdentifier",
+                    "JSXNamespacedName",
+                    "JSXMemberExpression",
+                    "JSXSpreadAttribute",
+                    "JSXExpressionContainer",
+                    "JSXOpeningElement",
+                    "JSXClosingElement",
+                    "JSXText",
+                    "JSXEmptyExpression",
+                    "JSXSpreadChild",
+                ],
+            },
+        ],
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": false,
+            },
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true,
+            },
+        ],
+        "max-len": [
+            "error",
+            130,
+            {
+                "ignoreUrls": true,
+                "ignoreComments": true,
+                "ignoreRegExpLiterals": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+            },
+        ],
+        "no-useless-constructor": "error",
+        "no-duplicate-imports": "error",
+        "prefer-arrow-callback": "error",
+        "no-invalid-regexp": "error",
+        "no-dupe-args": "error",
+        "no-duplicate-case": "error",
+        "no-var": "error",
+        "no-irregular-whitespace": "off",
+        "eqeqeq": "error",
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "beforeColon": false,
+                "afterColon": true,
+            },
+        ],
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true,
+                "overrides": {
+                    "return": {
+                        "after": true
+                    },
+                    "throw": {
+                        "after": true
+                    },
+                    "case": {
+                        "after": true
+                    },
+                },
+            },
+        ],
+        "lines-between-class-members": [
+            "error",
+            "always",
+            {
+                "exceptAfterSingleLine": false,
+            },
+        ],
+        "newline-after-var": "error",
+        "newline-before-return": "warn",
+        "@typescript-eslint/no-var-requires": "off",
+        "no-var-requires": "off",
+        "no-extra-boolean-cast": 0,
+    }
+}

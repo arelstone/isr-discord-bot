@@ -1,11 +1,12 @@
 
-import { Command, CommandMessage, Description, Guard } from "@typeit/discord";
+import { Command, CommandMessage, Description } from '@typeit/discord';
 
 export default abstract class Ping {
   @Command('ping')
   @Description('Pong')
-  async execute(command: CommandMessage) {
-    console.log('Command: Ping')
-    return await command.reply("Pong");
-  }
+    async execute(command: CommandMessage) {
+        console.log('Command: Ping');
+        
+        return await command.reply('Pong');
+    }
 }

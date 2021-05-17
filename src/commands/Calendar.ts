@@ -1,6 +1,6 @@
-import { Command, CommandMessage, Description } from "@typeit/discord";
-import { MessageAttachment } from "discord.js";
-import { calendarEventsFields } from "./utils/calendarEventFields";
+import { Command, CommandMessage, Description } from '@typeit/discord';
+import { MessageAttachment } from 'discord.js';
+import { calendarEventsFields } from './utils/calendarEventFields';
 
 export default abstract class Calendar {
     @Command('calendar')
@@ -14,8 +14,8 @@ export default abstract class Calendar {
 Our event calendar is as follows.
 Find the event suited for you, join channel and start racing`,
                 files: [new MessageAttachment('./src/assets/cover-image.png')],
-                fields: calendarEventsFields(command)
-            }
-        })
+                fields: calendarEventsFields(command),
+            },
+        });
     }
 }
