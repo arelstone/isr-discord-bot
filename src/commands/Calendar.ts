@@ -5,7 +5,7 @@ import { calendarEventsFields } from "./utils/calendarEventFields";
 export default abstract class Calendar {
     @Command('calendar')
     async execute(command: CommandMessage){
-        return command.channel.send({
+        return await command.channel.send({
             embed: {
                 title: `${command.guild.name} event calendar`,
                 description: `We love racing.

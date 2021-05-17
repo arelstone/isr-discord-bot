@@ -9,13 +9,12 @@ export default abstract class Steerlock {
         const {car} = command.args
 
         if (!car){
-            command.reply('Steerlock for ${car} was not found')
-            return 
+            return await command.reply('Steerlock for ${car} was not found')
         }
 
         const cars = steerlocks.filter(lock => lock.car.toLowerCase().includes(car.toLowerCase()))        
 
-        command.channel.send({
+        return await command.channel.send({
             embed: {
                 title: `Quering steerlock for: "${car}"`,
                 description: '[Read more about steerlock](https://coachdaveacademy.com/tutorials/correct-steering-locks-and-ratios-in-acc/)',

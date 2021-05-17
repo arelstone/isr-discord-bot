@@ -5,6 +5,6 @@ export default abstract class Ping {
   @Command('ping')
   @Description('Pong')
   async execute(command: CommandMessage) {
-    command.reply("Pong");
+    return await command.reply("Pong");
   }
 }
