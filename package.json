@@ -21,7 +21,8 @@
   "dependencies": {
     "@typeit/discord": "^4.0.9",
     "discord.js": "^12.5.3",
-    "dotenv": "^9.0.2"
+    "dotenv": "^9.0.2",
+    "tslib": "^2.2.0"
   },
   "engines": {
     "node": "12.x"
