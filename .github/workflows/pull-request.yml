@@ -37,6 +37,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-package-lock-
+      - run: npm install
       - run: npm run build
 
   lint:
@@ -55,4 +56,5 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-package-lock-
+      - run: npm install
       - run: npm run lint
