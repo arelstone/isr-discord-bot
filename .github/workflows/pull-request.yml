@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-node-
   
   typescript:
-    name: Linting
+    name: Typescript
     runs-on: ubuntu-latest
     needs: [setup]
     steps:
@@ -37,6 +37,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-package-lock-
+      - run: npm install -D @types/node@12
       - run: npm run build
 
   lint:
