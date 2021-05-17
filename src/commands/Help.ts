@@ -1,4 +1,4 @@
-import { Client, Command, CommandInfos, CommandMessage, Description, Infos, Rules } from "@typeit/discord";
+import { Client, Command, CommandInfos, CommandMessage, Description } from "@typeit/discord";
 import { EmbedField } from "discord.js";
 
 export default abstract class Help {
