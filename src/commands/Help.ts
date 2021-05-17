@@ -14,11 +14,11 @@ export default abstract class Help {
         })
     }
 
-    field(command: CommandInfos): EmbedField{
+    field({commandName, description, prefix}: CommandInfos): EmbedField{
         return {
             inline: false,
-            name: `${command.prefix}${command.commandName}`,
-            value: command.description
+            name: `${prefix}${commandName}`,
+            value: description
         }
     }
 }

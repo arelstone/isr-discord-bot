@@ -5,7 +5,7 @@ import * as Path from "path";
 @Discord("!", {
     import: [
       Path.join(__dirname, "..", "commands", "*.ts"),
-      Path.join(__dirname, "..", "commands", "*.js"),
+      Path.join(__dirname, "..", "..", "build", "commands", "*.js"),
     ],
 })
 
@@ -16,7 +16,7 @@ import * as Path from "path";
     }
 
     @On("message")
-    onMessage([message]: ArgsOf<"message">, client: Client) {
+    onMessage([message]: ArgsOf<"message">) {
       console.log(`[command]: ${message.content} by ${message.author.username} `)
     }
 
