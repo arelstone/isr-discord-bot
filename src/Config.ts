@@ -1,6 +1,6 @@
 const cfg = {
-    token: process.env.TOKEN,
-    welcomeChannelName: 'welcome'
+    env: process.env.ENV,
+    token: process.env.TOKEN
 }
 
 export default class Config {
@@ -10,5 +10,11 @@ export default class Config {
 
     static all(){
         return cfg
+    }
+
+    static isProduction(){
+        return !cfg.env
+        ? true
+        : cfg.env === 'production'
     }
 }

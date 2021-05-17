@@ -1,11 +1,12 @@
-import { ArgsOf, CommandMessage, CommandNotFound, Discord, On, Once } from "@typeit/discord";
-import { Client } from "discord.js";
+import { ArgsOf, CommandMessage, CommandNotFound, Discord, DiscordEvents, On, Once } from "@typeit/discord";
 import * as Path from "path";
+import Config from "../Config";
 
 @Discord("!", {
     import: [
-      Path.join(__dirname, "..", "commands", "*.ts"),
-      Path.join(__dirname, "..", "..", "build", "commands", "*.js"),
+      Config.isProduction() 
+        ? Path.join(__dirname, "..", "..", "build", "commands", "*.js")
+        : Path.join(__dirname, "..", "commands", "*.ts")
     ],
 })
 
@@ -17,11 +18,16 @@ import * as Path from "path";
 
     @On("message")
     onMessage([message]: ArgsOf<"message">) {
-      console.log(`[command]: ${message.content} by ${message.author.username} `)
+      console.log(`[${new Date().toISOString()}]: ${message.content} by ${message.author.username}\n`)
     }
 
     @CommandNotFound()
-    notFoundA(command: CommandMessage) {
-      command.reply("Command not found");
+    async commandNotFound(command: CommandMessage) {
+      return await command.reply(
+        [
+          `I'm sorry. I did not understand.`,
+          "Try __!help__ to get help",
+        ].join('\n')
+      );
     }
   }

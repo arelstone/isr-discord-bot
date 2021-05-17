@@ -1,9 +1,10 @@
-import { Command, CommandMessage } from "@typeit/discord";
+import { Command, CommandMessage, Description } from "@typeit/discord";
 import { MessageAttachment } from "discord.js";
 import { calendarEventsFields } from "./utils/calendarEventFields";
 
 export default abstract class Calendar {
     @Command('calendar')
+    @Description('Wanna know when we have events?')
     async execute(command: CommandMessage){
         return await command.channel.send({
             embed: {
