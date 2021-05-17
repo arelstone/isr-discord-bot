@@ -5,6 +5,7 @@ import * as Path from "path";
 @Discord("!", {
     import: [
       Path.join(__dirname, "..", "commands", "*.ts"),
+      Path.join(__dirname, "..", "commands", "*.js"),
     ],
 })
 
