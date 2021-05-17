@@ -11,7 +11,7 @@ import * as Path from "path";
   export class DiscordApp {
     @On("message")
     onMessage([message]: ArgsOf<"message">,client: Client) {
-      // console.log(message);
+      console.log(message);
     }
 
     @CommandNotFound()
