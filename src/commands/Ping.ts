@@ -7,6 +7,6 @@ export default abstract class Ping {
     async execute(command: CommandMessage) {
         console.log('Command: Ping');
         
-        return await command.reply('Pong');
+        return await command.reply('Pong!');
     }
 }
