@@ -8,8 +8,8 @@ export default abstract class Calendar {
     async execute(command: CommandMessage){
         return await command.channel.send({
             embed: {
-                title: `${command.guild.name} event calendar`,
-                description: `We love racing.
+                title: `${command?.guild?.name ?? 'Our'} event calendar`,
+                description: `**We love racing.**
                 
 Our event calendar is as follows.
 Find the event suited for you, join channel and start racing`,
