@@ -11,9 +11,9 @@ export default abstract class Steerlock {
             return await command.reply('Invalid query');
         }
 
-        const cars = steerlocks.filter(lock => lock.car.toLowerCase().includes(query.toLowerCase()));        
+        const results = steerlocks.filter(lock => lock.car.toLowerCase().includes(query.toLowerCase()));        
 
-        if (!cars) {
+        if (!results) {
             return await command.reply(`No results for ${query}`);
         }
         
@@ -22,7 +22,7 @@ export default abstract class Steerlock {
                 title: `Quering steerlock for: "${query}"`,
                 description: '[Read more about steerlock](https://coachdaveacademy.com/tutorials/correct-steering-locks-and-ratios-in-acc/)',
                 type: 'article',
-                fields: cars.map(car => ({
+                fields: results.map(car => ({
                     inline: false,
                     name: car.car,
                     value: car.value,

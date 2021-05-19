@@ -23,9 +23,7 @@ Find the event suited for you, join channel and start racing`,
         }
     }
 
-    events(command: CommandMessage){
-        console.log(command.guild);
-        
+    events(command: CommandMessage){        
         return Object.keys(calendar).map(day => {
             const value = calendar[day].map(({game, startingAt, host, description, channel}) => {
                 const channelId = channel &&  command.guild?.channels.cache.find(c => c.name === channel);
