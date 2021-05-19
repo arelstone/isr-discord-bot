@@ -11,14 +11,28 @@ import Config from '../Config';
 })
 
 export class DiscordApp {
+    private now(): string {
+        return new Date().toISOString();
+    }
+
     @Once('ready')
     onReady(){
-        console.info('Im ready!');
+        console.info(`[${this.now()}] Im ready`);
     }
 
     @On('message')
-    onMessage([message]: ArgsOf<'message'>) {
-        console.log(`[${new Date().toISOString()}]: ${message.content} by ${message.author.username}\n`);
+    onMessage([{author, content}]: ArgsOf<'message'>) {
+        if (author.bot) {
+            return;
+        }
+        const response = [
+            `[${this.now()}]`,
+            `[username]: ${author.username} (${author.id})`,
+            `Content: ${content}`,
+            '',
+        ].join('\n');
+
+        return console.log(response);
     }
 
     @CommandNotFound()
