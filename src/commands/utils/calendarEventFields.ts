@@ -1,11 +1,11 @@
 import { CommandMessage } from '@typeit/discord';
 import calendar from '../stubs/calendar';
 
-export const calendarEventsFields = ({guild: {channels, members}}: CommandMessage)=> {
+export const calendarEventsFields = ({guild}: CommandMessage)=> {
     return Object.keys(calendar).map(day => {
         const value = calendar[day].map(({game, startingAt, host, description, channel}) => {
-            const channelId = channels.cache.find(c => c.name === channel);
-            const hostId = members.cache.find(member => member.displayName === host);
+            const channelId = guild.channels.cache.find(c => c.name === channel);
+            const hostId = guild.members.cache.find(member => member.displayName === host);
             
             return [
                 `Game: **${game}**`,

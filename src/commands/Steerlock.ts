@@ -4,7 +4,7 @@ import steerlocks from './stubs/steerlocks';
 export default abstract class Steerlock {
     @Command('steerlock :query')
     @Description('Need to know the steerlock for a car?')
-    async execute(command: CommandMessage){
+    async execute(command: CommandMessage<{query: string;}>){
         const {query} = command.args;
 
         if (!query){
