@@ -4,13 +4,13 @@ import calendar from '../stubs/calendar';
 export const calendarEventsFields = ({guild}: CommandMessage)=> {
     return Object.keys(calendar).map(day => {
         const value = calendar[day].map(({game, startingAt, host, description, channel}) => {
-            const channelId = guild.channels.cache.find(c => c.name === channel);
-            const hostId = guild.members.cache.find(member => member.displayName === host);
+            const channelId = channel &&  guild.channels.cache.find(c => c.name === channel);
+            const hostId = host&& guild.members.cache.find(member => member.displayName === host);
             
             return [
                 `Game: **${game}**`,
                 `When: **${startingAt}**`,
-                `Host: ${hostId || host}`,
+                `Host: ${hostId ?? host}`,
                 !!channelId && `${channelId} for more info`,
                 !!description && `${description}`,
             ]
