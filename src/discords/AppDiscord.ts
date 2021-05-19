@@ -22,14 +22,14 @@ export class DiscordApp {
 
     @On('message')
     onMessage([{author, content}]: ArgsOf<'message'>) {
-        if (author.bot) {
+        if (author.bot || !content.startsWith('!')) {
             return;
         }
 
         const response = [
             `[${this.now()}]`,
             `[username]: ${author.username} (${author.id})`,
-            `Content: ${content}`,
+            `[command]: ${content}`,
             '',
         ].join('\n');
 
