@@ -25,6 +25,7 @@ export class DiscordApp {
         if (author.bot) {
             return;
         }
+
         const response = [
             `[${this.now()}]`,
             `[username]: ${author.username} (${author.id})`,
