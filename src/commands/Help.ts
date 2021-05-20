@@ -7,12 +7,11 @@ export default abstract class Help {
     async execute(command: CommandMessage){
         const { type } = command.channel;
 
-        return await command[type === 'dm' ? 'author' : 'member'].send(this.message());
+        return await command[type === 'dm' ? 'author' : 'member'].send(this.message(command));
     }
 
-    private message() {
-        const cmds = Client.getCommands().filter(cmd => !cmd.infos.hidden);
 
+    private message({member}: CommandMessage) {
         return {
             embed: {
                 title: 'Need help?',
@@ -23,9 +22,15 @@ export default abstract class Help {
                     'This is a list of avialable commands',
                 ].join('\n\n'),
                 files: [new MessageAttachment('./src/assets/max-power.jpeg')],
-                fields: cmds.map(this.field),
+                fields: this.commands().map(this.field),
             },
         };
+    }
+
+    private commands(){        
+        return Client.getCommands().filter(cmd => {
+            return !cmd.infos.hidden;
+        });
     }
 
     private field({commandName, description, prefix}: CommandInfos): EmbedField {
