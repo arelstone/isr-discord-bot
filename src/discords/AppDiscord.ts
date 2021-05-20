@@ -36,8 +36,7 @@ export class DiscordApp {
             '',
         ].join('\n');
         
-        // @ts-expect-error ignore
-        await guild?.channels?.cache.get(Config.get('botSaysChannelId')).send(response);
+        // await guild?.channels?.cache.get(Config.get('botSaysChannelId')).send(response);
 
         return console.log(response);
     }
