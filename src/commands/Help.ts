@@ -1,11 +1,19 @@
-import { Client, Command, CommandInfos, CommandMessage, Description } from '@typeit/discord';
+import { Client, Command, CommandInfos, CommandMessage, Infos } from '@typeit/discord';
 import { EmbedField, MessageAttachment } from 'discord.js';
 
 export default abstract class Help {
     @Command('help')
-    @Description('Need help?')
+    @Infos({description: 'Need help?'})
     async execute(command: CommandMessage){
-        return await command.channel.send({
+        const { type } = command.channel;
+
+        return await command[type === 'dm' ? 'author' : 'member'].send(this.message());
+    }
+
+    private message() {
+        const cmds = Client.getCommands().filter(cmd => !cmd.infos.hidden);
+
+        return {
             embed: {
                 title: 'Need help?',
                 description: [
@@ -15,12 +23,12 @@ export default abstract class Help {
                     'This is a list of avialable commands',
                 ].join('\n\n'),
                 files: [new MessageAttachment('./src/assets/max-power.jpeg')],
-                fields: Client.getCommands().map(this.field),
+                fields: cmds.map(this.field),
             },
-        });
+        };
     }
 
-    field({commandName, description, prefix}: CommandInfos): EmbedField{
+    private field({commandName, description, prefix}: CommandInfos): EmbedField {
         return {
             inline: false,
             name: `${prefix}${commandName}`,

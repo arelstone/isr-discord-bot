@@ -1,10 +1,13 @@
 
-import { Command, CommandMessage, Description } from '@typeit/discord';
+import { Command, CommandMessage, Infos } from '@typeit/discord';
 
 export default abstract class Ping {
   @Command('ping')
-  @Description('Pong')
+  @Infos({description: 'Pong', hidden: true})
     async execute(command: CommandMessage) {
-        return await command.reply('Pong');
+        const duration = Date.now() - command.createdTimestamp;
+        const { type } = command.channel;
+
+        return await command[type === 'dm' ? 'author' : 'member'].send(`Pong! ${duration}ms`);
     }
 }

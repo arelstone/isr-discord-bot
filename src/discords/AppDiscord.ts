@@ -2,11 +2,16 @@ import { ArgsOf, CommandMessage, CommandNotFound, Discord, On, Once } from '@typ
 import * as Path from 'path';
 import Config from '../Config';
 
-@Discord('!', {
+const PREFIX = '!';
+
+@Discord(PREFIX, {
     import: [
         Config.isProduction() 
             ? Path.join(__dirname, '..', '..', 'build', 'commands', '*.js')
             : Path.join(__dirname, '..', 'commands', '*.ts'),
+        Config.isProduction() 
+            ? Path.join(__dirname, '..', '..', 'build', 'events', '*.js')
+            : Path.join(__dirname, '..', 'events', '*.ts'),
     ],
 })
 
@@ -16,22 +21,23 @@ export class DiscordApp {
     }
 
     @Once('ready')
-    onReady(){
+    onReady(){        
         console.info(`[${this.now()}] Im ready`);
     }
 
     @On('message')
-    onMessage([{author, content}]: ArgsOf<'message'>) {
-        if (author.bot || !content.startsWith('!')) {
+    async onMessage([{author, content, guild}]: ArgsOf<'message'>) {
+        if (author.bot || !content.startsWith(PREFIX)) {
             return;
         }
-
+        
         const response = [
-            `[${this.now()}]`,
-            `[username]: ${author.username} (${author.id})`,
-            `[command]: ${content}`,
+            `__[${this.now()}]__ **${author.username}** send command: **${content}**`,
             '',
         ].join('\n');
+        
+        // @ts-expect-error ignore
+        await guild?.channels?.cache.get(Config.get('botSaysChannelId')).send(response);
 
         return console.log(response);
     }
