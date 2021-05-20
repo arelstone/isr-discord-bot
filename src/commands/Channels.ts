@@ -6,6 +6,6 @@ export default abstract class Channels {
     async execute(command: CommandMessage) {
         const channels = command.guild.channels.cache.map(channel => ({id: channel.id, name: channel.name}));
         
-        return await command.author.send(JSON.stringify(channels, null, 2));
+        return await command.reply(JSON.stringify(channels, null, 2));
     }
 }

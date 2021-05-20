@@ -7,11 +7,10 @@ export default abstract class Help {
     async execute(command: CommandMessage){
         const { type } = command.channel;
 
-        return await command[type === 'dm' ? 'author' : 'member'].send(this.message(command));
+        return await command[type === 'dm' ? 'author' : 'member'].send(this.message());
     }
 
-
-    private message({member}: CommandMessage) {
+    private message() {
         return {
             embed: {
                 title: 'Need help?',
