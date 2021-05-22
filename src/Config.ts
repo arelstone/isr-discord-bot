@@ -3,6 +3,7 @@ const cfg = {
     token: process.env.TOKEN,
     botSaysChannelId: process.env.BOT_SAYS_CHANNEL_ID,
     welcomeChannelId: process.env.WELCOME_CHANNEL_ID,
+    guildId: process.env.GUILS_ID,
 };
 
 export default class Config {
