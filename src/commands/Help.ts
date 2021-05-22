@@ -8,11 +8,11 @@ export default abstract class Help {
         inWelcomeMessage: true,
     })
     async execute(command: CommandMessage){
-        return await command.reply(this.message(this.isAdmin(command)));
+        return await command.reply(this.message());
     }
 
     isAdmin(command: CommandMessage): boolean {
-        const {id} = command.guild?.roles?.cache.find(r => r.name === 'admin');
+        const {id} = command.guild?.roles?.cache?.find(r => r.name === 'admin');
 
         if (!id) {
             return false;
@@ -21,7 +21,7 @@ export default abstract class Help {
         return command.member?.roles?.cache.has(id);
     }
 
-    private message(isAdmin: boolean) {
+    private message(isAdmin: boolean = false) {
         return {
             embed: {
                 title: 'Need help?',
