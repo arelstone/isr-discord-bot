@@ -8,10 +8,16 @@ export default abstract class Help {
         inWelcomeMessage: true,
     })
     async execute(command: CommandMessage){
-        return await command.reply(this.message());
+        return await command.reply(this.message(this.isAdmin(command)));
     }
 
-    private message() {
+    isAdmin(command: CommandMessage): boolean {
+        const {id} = command.guild.roles.cache.find(r => r.name === 'admin');
+        
+        return command.member.roles.cache.has(id);
+    }
+
+    private message(isAdmin: boolean) {
         return {
             embed: {
                 title: 'Need help?',
@@ -22,18 +28,14 @@ export default abstract class Help {
                     'This is a list of avialable commands',
                 ].join('\n\n'),
                 files: [new MessageAttachment('./src/assets/max-power.jpeg')],
-                fields: this.commands(false).map(this.field),
+                fields: this.commands(isAdmin).map(this.field),
             },
         };
     }
 
-    private commands(userIsAdmin: boolean){      
-        if (userIsAdmin) {
-            return Client.getCommands();
-        }  
-
+    private commands(userIsAdmin: boolean){
         return Client.getCommands().filter(cmd => {
-            return !cmd.infos.hidden;
+            return userIsAdmin ? cmd : !cmd.infos.hidden;
         });
     }
 
