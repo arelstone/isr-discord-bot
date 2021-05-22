@@ -8,7 +8,7 @@ export default abstract class Help {
         inWelcomeMessage: true,
     })
     async execute(command: CommandMessage){
-        return await command.reply(this.message());
+        return await command.reply(this.message(this.isAdmin(command)));
     }
 
     isAdmin(command: CommandMessage): boolean {
