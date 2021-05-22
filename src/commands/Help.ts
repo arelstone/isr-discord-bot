@@ -12,6 +12,8 @@ export default abstract class Help {
     }
 
     isAdmin(command: CommandMessage): boolean {
+        console.log(command);
+        
         const role = command.guild?.roles?.cache?.find(r => r.name === 'admin');
         
         console.log('###role', role);
