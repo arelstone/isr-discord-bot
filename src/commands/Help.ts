@@ -12,9 +12,9 @@ export default abstract class Help {
     }
 
     isAdmin(command: CommandMessage): boolean {
-        const {id} = command.guild.roles.cache.find(r => r.name === 'admin');
+        const {id} = command.guild.roles?.cache.find(r => r.name === 'admin');
         
-        return command.member.roles.cache.has(id);
+        return command.member.roles?.cache.has(id);
     }
 
     private message(isAdmin: boolean) {
