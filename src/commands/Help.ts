@@ -12,7 +12,7 @@ export default abstract class Help {
     }
 
     isAdmin(command: CommandMessage): boolean {
-        console.log(command);
+        console.log(command.guild);
         
         const role = command.guild?.roles?.cache?.find(r => r.name === 'admin');
         
