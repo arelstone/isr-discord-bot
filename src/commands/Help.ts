@@ -7,12 +7,13 @@ export default abstract class Help {
         description: 'Need help?',
         inWelcomeMessage: true,
     })
-    async execute(command: CommandMessage){
+    async execute(command: CommandMessage, client: Client){
+        console.log(client);
+        
         return await command.reply(this.message(this.isAdmin(command)));
     }
 
     isAdmin(command: CommandMessage): boolean {
-        console.log(command.guild);
         
         const role = command.guild?.roles?.cache?.find(r => r.name === 'admin');
         
