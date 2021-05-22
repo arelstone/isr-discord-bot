@@ -25,7 +25,7 @@ export default abstract class WelcomeUser {
         // @ts-expect-error ignore
         await channel.send(new MessageEmbed()
             // @ts-expect-error ignore
-            .setTitle(`Welcome ${member.username}`)
+            .setTitle(`Welcome ${member?.username || ''}`)
             .setDescription(`We are currently ${client.users.cache.size} members`)
             .setColor(colors.info)
         );
