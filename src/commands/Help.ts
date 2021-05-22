@@ -1,6 +1,5 @@
 import { Client, Command, CommandInfos, CommandMessage, Infos } from '@typeit/discord';
 import { EmbedField, MessageAttachment } from 'discord.js';
-import Config from '../Config';
 
 export default abstract class Help {
     @Command('help')
@@ -8,24 +7,19 @@ export default abstract class Help {
         description: 'Need help?',
         inWelcomeMessage: true,
     })
-    async execute(command: CommandMessage, client: Client){
-        console.log(await (await client.guilds.fetch(Config.get('guildId'))).roles);
-        
-        return await command.reply(this.message(this.isAdmin(command)));
+    async execute(command: CommandMessage){        
+        return await command.reply(this.message());
     }
 
-    isAdmin(command: CommandMessage): boolean {
-        
-        const role = command.guild?.roles?.cache?.find(r => r.name === 'admin');
-        
-        console.log('###role', role);
+    // isAdmin(command: CommandMessage): boolean {
+    //     const role = command.guild?.roles?.cache?.find(r => r.name === 'admin');
 
-        if (!role) {
-            return false;
-        }
+    //     if (!role) {
+    //         return false;
+    //     }
         
-        return command.member?.roles?.cache.has(role.id);
-    }
+    //     return command.member?.roles?.cache.has(role.id);
+    // }
 
     private message(isAdmin: boolean = false) {
         return {
