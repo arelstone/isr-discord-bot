@@ -6,6 +6,7 @@ export default abstract class Calendar {
     @Command('calendar')
     @Infos({
         description: 'Wanna know when we have events?',
+        inWelcomeMessage: true,
     })
 
     async execute(command: CommandMessage){

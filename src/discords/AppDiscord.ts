@@ -26,7 +26,7 @@ export class DiscordApp {
     }
 
     @On('message')
-    async onMessage([{author, content, guild}]: ArgsOf<'message'>) {
+    async onMessage([{author, content}]: ArgsOf<'message'>) {
         if (author.bot || !content.startsWith(PREFIX)) {
             return;
         }

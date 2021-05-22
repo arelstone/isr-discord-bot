@@ -3,11 +3,12 @@ import { EmbedField, MessageAttachment } from 'discord.js';
 
 export default abstract class Help {
     @Command('help')
-    @Infos({description: 'Need help?'})
+    @Infos({
+        description: 'Need help?',
+        inWelcomeMessage: true,
+    })
     async execute(command: CommandMessage){
-        const { type } = command.channel;
-
-        return await command[type === 'dm' ? 'author' : 'member'].send(this.message());
+        return await command.reply(this.message());
     }
 
     private message() {
@@ -21,12 +22,16 @@ export default abstract class Help {
                     'This is a list of avialable commands',
                 ].join('\n\n'),
                 files: [new MessageAttachment('./src/assets/max-power.jpeg')],
-                fields: this.commands().map(this.field),
+                fields: this.commands(false).map(this.field),
             },
         };
     }
 
-    private commands(){        
+    private commands(userIsAdmin: boolean){      
+        if (userIsAdmin) {
+            return Client.getCommands();
+        }  
+
         return Client.getCommands().filter(cmd => {
             return !cmd.infos.hidden;
         });

@@ -3,7 +3,9 @@ import steerlocks from './stubs/steerlocks';
 
 export default abstract class Steerlock {
     @Command('steerlock :query')
-    @Infos({description: 'Need to know the steerlock for a car?'})
+    @Infos({
+        description: 'Playing Assetto Corsa Competizione? Need to know the steerlock for a car?',
+    })
     async execute(command: CommandMessage<{query: string;}>){
         const {
             args: { query },
@@ -14,7 +16,6 @@ export default abstract class Steerlock {
             return await this.reply(command, 'Invalid query');
         }
 
-
         if (!this.results(query)) {
             return await this.reply(command, `No results for ${query}`);
         }
@@ -23,7 +24,7 @@ export default abstract class Steerlock {
     }
 
     private async reply(command: CommandMessage, message: any) {
-        return await command[command.channel.type === 'dm' ? 'author' : 'member'].send(message);
+        return await command.reply(message);
     }
 
     private results(query: string){
