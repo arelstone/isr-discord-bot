@@ -1,5 +1,6 @@
 import { Client, Command, CommandInfos, CommandMessage, Infos } from '@typeit/discord';
 import { EmbedField, MessageAttachment } from 'discord.js';
+import Config from '../Config';
 
 export default abstract class Help {
     @Command('help')
@@ -8,7 +9,7 @@ export default abstract class Help {
         inWelcomeMessage: true,
     })
     async execute(command: CommandMessage, client: Client){
-        console.log(client);
+        console.log(await (await client.guilds.fetch(Config.get('guildId'))).roles);
         
         return await command.reply(this.message(this.isAdmin(command)));
     }
