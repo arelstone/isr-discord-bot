@@ -29,8 +29,9 @@ export class DiscordApp {
 
     @On('message')
     async onMessage([{author, content, guild}]: ArgsOf<'message'>) {
+        const members = await guild.members.fetch();
 
-        console.log(guild.members.cache.map(member => ({
+        console.log(members.map(member => ({
             id: member.id,
             displayName: member.displayName,
         })));
