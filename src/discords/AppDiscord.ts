@@ -1,7 +1,7 @@
 import { ArgsOf, CommandMessage, CommandNotFound, Discord, On, Once } from '@typeit/discord';
 import * as Path from 'path';
 import Config from '../Config';
-import autoReactMap from '../../auto-react-map';
+// import autoReactMap from '../../auto-react-map';
 
 const PREFIX = '!';
 
