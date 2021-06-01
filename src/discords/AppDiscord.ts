@@ -1,7 +1,7 @@
 import { ArgsOf, CommandMessage, CommandNotFound, Discord, On, Once } from '@typeit/discord';
 import * as Path from 'path';
 import Config from '../Config';
-// import autoReactMap from '../../auto-react-map';
+import autoReactMap from '../../auto-react-map';
 
 const PREFIX = '!';
 
@@ -28,14 +28,17 @@ export class DiscordApp {
     }
 
     @On('message')
-    async onMessage([{author, content, guild}]: ArgsOf<'message'>) {
-        const members = await guild.members.fetch();
+    async onMessage([{author, content, guild, react}]: ArgsOf<'message'>) {
+        // const members = await guild.members.fetch();
 
-        console.log(members.map(member => ({
-            id: member.id,
-            displayName: member.displayName,
-        })));
+        // console.log(members.map(member => ({
+        //     id: member.id,
+        //     displayName: member.displayName,
+        // })));
+        // console.log(author);
 
+        // console.log({authorId: author.id, map: autoReactMap.get(author.id)});
+        
         // if (autoReactMap.has(author.id)) {
         //     const emoji = guild.emojis.cache.find(({name}) => name === autoReactMap.get(author.id));
 
