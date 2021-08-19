@@ -5,6 +5,7 @@ export default abstract class Steerlock {
     @Command('steerlock :query')
     @Infos({
         description: 'Playing Assetto Corsa Competizione? Need to know the steerlock for a car?',
+        inWelcomeMessage: true
     })
     async execute(command: CommandMessage<{query: string;}>){
         const {
