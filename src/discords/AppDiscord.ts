@@ -30,14 +30,14 @@ export class DiscordApp {
     @On('message')
     async onMessage([{author, content, guild, react}]: ArgsOf<'message'>) {
         
-        if (autoReactMap.has(author.id)) {
-            // const emoji = guild.emojis.cache..find(({name}) => name === autoReactMap.get(author.id));
-            const emoji = guild.emojis.cache;
+        // if (autoReactMap.has(author.id)) {
+        //     // const emoji = guild.emojis.cache..find(({name}) => name === autoReactMap.get(author.id));
+        //     const emoji = guild.emojis.cache;
             
-            console.log(emoji);
+        //     console.log(emoji);
 
-            // await react(emoji);
-        }
+        //     // await react(emoji);
+        // }
 
         if (author.bot || !content.startsWith(PREFIX)) {
             return;
