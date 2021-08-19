@@ -20,14 +20,14 @@ export default abstract class WelcomeUser {
         [member]: ArgsOf<'guildMemberAdd'>,
         client: Client,
     ){
-        const channel = client.channels.cache.get(Config.get('welcomeChannelId'));        
+        console.log('###guildMemberAdd', JSON.stringify(member, null, 2))
+        // const channel = client.channels.cache.get(Config.get('welcomeChannelId'));        
 
-        // @ts-expect-error ignore
-        await channel.send(new MessageEmbed()
-            // @ts-expect-error ignore
-            .setTitle(`Welcome ${member?.username || ''}. Nice of you to join us! I will send you a message regarding our championships. Please read it`)
-            .setColor(colors.info)
-        );
+        // // @ts-expect-error ignore
+        // await channel.send(new MessageEmbed()
+        //     .setTitle(`Welcome ${member?.user.username || ''}. Nice of you to join us! I will send you a message regarding our championships. Please read it`)
+        //     .setColor(colors.info)
+        // );
 
         await member.send(
             new MessageEmbed().
