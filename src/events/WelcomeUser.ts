@@ -25,7 +25,7 @@ export default abstract class WelcomeUser {
         // @ts-expect-error ignore
         await channel.send(new MessageEmbed()
             // @ts-expect-error ignore
-            .setTitle(`Welcome ${member?.username || ''}. Nice of you to join us!`)
+            .setTitle(`Welcome ${member?.username || ''}. Nice of you to join us! I will send you a message regarding our championships. Please read it`)
             .setColor(colors.info)
         );
 
@@ -71,19 +71,7 @@ export default abstract class WelcomeUser {
                         'If you are here for the saturday leagues please join #acc-saturday-league for more info',
                     ].join('\n'),
                     false)
-                
         );
-
-        /**
-         * // '**Gran Turismo Sport**',
-                            // 'If you are here for gran turismio sport, and want to join the sunday league, you can signup in the #gtsport-sunday-signup channel.',
-                            // 'After signing up you will be reffered to either room one or two.',
-                            // '',
-                            // '**Asseto Corsa Competizione**',
-                            // 'If you here for one of the acc leagues, join can find them in the channels prefixed with acc.',
-                            // '',
-                            // '',
-         */
 
         return await member.send(
             new MessageEmbed()
